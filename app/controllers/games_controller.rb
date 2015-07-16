@@ -11,31 +11,24 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new game_params
-
-    respond_to do |format|
-      if @game.save
-        render :show, status: :created, location: @game
-      else
-        render json: @game.errors, status: :unprocessable_entity
-      end
+    if @game.save
+      render :show, status: :created, location: @game
+    else
+      render json: @game.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @game.update game_params
-        render :show, status: :ok, location: @game
-      else
-        render json: @game.errors, status: :unprocessable_entity
-      end
+    if @game.update game_params
+      render :show, status: :ok, location: @game
+    else
+      render json: @game.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @game.destroy
-    respond_to do |format|
-      head :no_content
-    end
+    head :no_content
   end
 
   private
