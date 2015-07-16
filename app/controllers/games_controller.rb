@@ -34,7 +34,7 @@ class GamesController < ApplicationController
   private
 
   def set_game
-    @game = Game.where(friendly_name: params[:id]).first
+    @game = Game.find params[:id]
   end
 
   def game_params

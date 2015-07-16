@@ -1,3 +1,3 @@
 class WordSerializer < ActiveModel::Serializer
-  attributes :text
+  attributes :id, :text, :points
 end

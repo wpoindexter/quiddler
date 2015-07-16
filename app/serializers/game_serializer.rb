@@ -1,4 +1,4 @@
 class GameSerializer < ActiveModel::Serializer
-  attributes :friendly_name
+  attributes :id, :friendly_name
   has_many :players
 end
