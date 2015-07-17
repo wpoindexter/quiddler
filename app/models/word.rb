@@ -12,7 +12,7 @@ class Word < ActiveRecord::Base
   end
 
   def valid_word?
-    # TODO
+    # TODO send dictionary API call
     !text.eql? 'fail'
   end
 
