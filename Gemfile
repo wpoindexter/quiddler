@@ -19,8 +19,6 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails'
   gem 'guard-rspec', require: false
   gem 'pry'
   gem 'pry-nav'
@@ -30,7 +28,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
 end
