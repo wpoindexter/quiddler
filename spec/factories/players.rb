@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :player do
-    name 'MyString'
+    name 'Player 1'
+    scorekeeper false
     game
   end
 end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :letter do
-    text 'MyString'
+    text 'a'
     points 1
   end
 end

@@ -20,7 +20,6 @@ class PlayersController < ApplicationController
   end
 
   def update
-    @player.set_scorekeeper player_params[:scorekeeper]
     if @player.update player_params
       render json: @player
     else

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :word do
-    text 'MyString'
+    text 'keyboard'
     player
   end
 end
