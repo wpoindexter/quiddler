@@ -10,25 +10,33 @@ class WordsController < ApplicationController
   end
 
   def create
-    @word = Word.new word_params
-    if @word.save
-      render :show, status: :created, location: @word
+    word = Word.new word_params
+    word.player_id = params[:player_id]
+    if word.save
+      render json: word, status: :created
     else
-      render json: @word.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
   def update
     if @word.update word_params
-      render :show, status: :ok, location: @word
+      render json: @word
     else
-      render json: @word.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
+  def validate
+    render json: {valid: Word.new(text: params[:text]).valid_word?}
+  end
+
   def destroy
-    @word.destroy
-    head :no_content
+    if @word.destroy
+      render nothing: true
+    else
+      render_error
+    end
   end
 
   private
@@ -38,6 +46,10 @@ class WordsController < ApplicationController
   end
 
   def word_params
-    params[:word]
+    params.require(:word).permit :text
+  end
+
+  def render_error
+    render json: @word.errors, status: :unprocessable_entity
   end
 end

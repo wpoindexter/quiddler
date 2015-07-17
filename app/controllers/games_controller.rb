@@ -10,25 +10,29 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new game_params
-    if @game.save
-      render :show, status: :created, location: @game
+    game = Game.new game_params
+    game.active = true
+    if game.save
+      render json: game, status: :created
     else
-      render json: @game.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
   def update
     if @game.update game_params
-      render :show, status: :ok, location: @game
+      render json: @game
     else
-      render json: @game.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
   def destroy
-    @game.destroy
-    head :no_content
+    if @game.update_attribute :active, false
+      render json: @game
+    else
+      render_error
+    end
   end
 
   private
@@ -38,6 +42,10 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params[:game]
+    params.require(:game).permit :active, :friendly_name
+  end
+
+  def render_error
+    render json: @game.errors, status: :unprocessable_entity
   end
 end

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       resources :words
     end
   end
+
+  post '/words/validate' => 'words#validate'
 end

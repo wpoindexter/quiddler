@@ -10,25 +10,30 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @player = Player.new player_params
-    if @player.save
-      render :show, status: :created, location: @player
+    player = Player.new player_params
+    player.game_id = params[:game_id]
+    if player.save
+      render json: player, status: :created
     else
-      render json: @player.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
   def update
+    @player.set_scorekeeper player_params[:scorekeeper]
     if @player.update player_params
-      render :show, status: :ok, location: @player
+      render json: @player
     else
-      render json: @player.errors, status: :unprocessable_entity
+      render_error
     end
   end
 
   def destroy
-    @player.destroy
-    head :no_content
+    if @player.destroy
+      render nothing: true
+    else
+      render_error
+    end
   end
 
   private
@@ -38,6 +43,10 @@ class PlayersController < ApplicationController
   end
 
   def player_params
-    params[:player]
+    params.require(:player).permit :name, :scorekeeper
+  end
+
+  def render_error
+    render json: @player.errors, status: :unprocessable_entity
   end
 end

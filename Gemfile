@@ -2,13 +2,14 @@ ruby '2.2.2'
 
 source 'https://rubygems.org'
 
+gem 'active_model_serializers'
+gem 'jbuilder', '~> 2.0'
+gem 'puma'
 gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'puma'
-gem 'active_model_serializers'
+gem 'uglifier', '>= 1.3.0'
+gem 'wannabe_bool'
 
 group :development do
   gem 'letter_opener'
@@ -30,5 +31,6 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
