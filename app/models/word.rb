@@ -1,6 +1,5 @@
 class Word < ActiveRecord::Base
   belongs_to :player
-
   validates :text, presence: true
   validate :text_must_be_a_word, on: :create
 

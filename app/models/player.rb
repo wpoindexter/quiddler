@@ -1,7 +1,6 @@
 class Player < ActiveRecord::Base
   belongs_to :game
   has_many :words, dependent: :destroy
-
   validate :only_one_scorekeeper, :unique_player_names_per_game
 
   private
