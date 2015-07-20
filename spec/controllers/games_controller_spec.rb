@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
-  context 'index' do
+  describe 'GET #index' do
     it 'should render all games' do
       games = FactoryGirl.create_list :active_game, 4
       get :index
@@ -10,7 +10,7 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  context 'show' do
+  describe 'GET #show' do
     it 'should render a game' do
       game = FactoryGirl.create :active_game
       get :show, id: game.id
@@ -19,10 +19,11 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  context 'create' do
+  describe 'POST #create' do
     it 'should create an active game' do
-      post :create, friendly_name: 'Something'
-
+      expect {
+        post :create, { friendly_name: 'Something' }
+      }.to change(Game).by 1
     end
   end
 end

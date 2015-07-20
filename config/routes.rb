@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :games
-  resources :games
   root 'welcome#index'
 
   resources :letters
