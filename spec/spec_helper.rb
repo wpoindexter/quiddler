@@ -1,4 +1,5 @@
 require 'database_cleaner'
+require 'simplecov'
 
 RSpec.configure do |config|
   config.before(:suite) do
@@ -30,5 +31,24 @@ RSpec.configure do |config|
 
   if config.files_to_run.one?
     config.default_formatter = 'doc'
+  end
+
+  if ENV['COVERAGE']
+    SimpleCov.start 'rails'
+    all_files = Dir['**/*.rb']
+    base_result = {}
+    all_files.each do |file|
+      absolute = File.expand_path(file)
+      lines = File.readlines(absolute, encoding: 'UTF-8')
+      base_result[absolute] = lines.map do |l|
+        l.strip!
+        l.empty? || l =~ /^else$/ || l =~ /^end$/ || l[0] == '#' ? nil : 0
+      end
+    end
+    SimpleCov.at_exit do
+      merged = SimpleCov::Result.new(Coverage.result).original_result.merge_resultset(base_result)
+      result = SimpleCov::Result.new(merged)
+      result.format!
+    end
   end
 end
