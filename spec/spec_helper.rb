@@ -34,7 +34,9 @@ RSpec.configure do |config|
   end
 
   if ENV['COVERAGE']
-    SimpleCov.start 'rails'
+    SimpleCov.start 'rails' do
+      add_group 'Serializers', 'app/serializers'
+    end
     all_files = Dir['**/*.rb']
     base_result = {}
     all_files.each do |file|
@@ -45,6 +47,7 @@ RSpec.configure do |config|
         l.empty? || l =~ /^else$/ || l =~ /^end$/ || l[0] == '#' ? nil : 0
       end
     end
+    
     SimpleCov.at_exit do
       merged = SimpleCov::Result.new(Coverage.result).original_result.merge_resultset(base_result)
       result = SimpleCov::Result.new(merged)
