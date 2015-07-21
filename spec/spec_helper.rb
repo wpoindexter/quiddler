@@ -23,15 +23,13 @@ RSpec.configure do |config|
 
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
-  config.example_status_persistence_file_path = "spec/examples.txt"
+  config.example_status_persistence_file_path = 'spec/examples.txt'
   config.disable_monkey_patching!
   config.profile_examples = 10
   config.order = :random
   Kernel.srand config.seed
 
-  if config.files_to_run.one?
-    config.default_formatter = 'doc'
-  end
+  config.default_formatter = 'doc' if config.files_to_run.one?
 
   if ENV['COVERAGE']
     SimpleCov.start 'rails' do
@@ -47,7 +45,6 @@ RSpec.configure do |config|
         l.empty? || l =~ /^else$/ || l =~ /^end$/ || l[0] == '#' ? nil : 0
       end
     end
-    
     SimpleCov.at_exit do
       merged = SimpleCov::Result.new(Coverage.result).original_result.merge_resultset(base_result)
       result = SimpleCov::Result.new(merged)

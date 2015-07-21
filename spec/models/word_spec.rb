@@ -14,16 +14,16 @@ RSpec.describe Word, type: :model do
     end
 
     it 'should require a word to actually be a word' do
-      # TODO only fail on the word 'fail' for now
+      # TODO: only fail on the word 'fail' for now
       word = Word.create text: 'fail'
-      expect(word.errors.first).to eq [:text, "must be a valid word according to the dictionary"]
+      expect(word.errors.first).to eq [:text, 'must be a valid word according to the dictionary']
     end
   end
 
   it 'should calculate points' do
-    a = Letter.create text: 'a', points: 1
-    b = Letter.create text: 'b', points: 2
-    c = Letter.create text: 'c', points: 3
+    Letter.create text: 'a', points: 1
+    Letter.create text: 'b', points: 2
+    Letter.create text: 'c', points: 3
     word = Word.create text: 'abc'
     expect(word.points).to eq 6
   end

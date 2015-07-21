@@ -6,10 +6,12 @@ class Player < ActiveRecord::Base
   private
 
   def only_one_scorekeeper
-    if scorekeeper and !new_record?
-      game.players.where.not(id: id).each do |player|
-        player.update_attribute :scorekeeper, false
-      end
+    update_non_scorekeepers if scorekeeper && !new_record?
+  end
+
+  def update_non_scorekeepers
+    game.players.where.not(id: id).each do |player|
+      player.update_attribute :scorekeeper, false
     end
   end
 

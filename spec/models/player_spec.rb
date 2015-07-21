@@ -18,10 +18,10 @@ RSpec.describe Player, type: :model do
 
     it 'should not allow duplicate player names per game' do
       game = FactoryGirl.create :game
-      player1 = FactoryGirl.create :player, name: 'Player 1', game: game
-      player2 = FactoryGirl.create :player, name: 'Player 2', game: game
+      FactoryGirl.create :player, name: 'Player 1', game: game
+      FactoryGirl.create :player, name: 'Player 2', game: game
       player3 = Player.create name: 'Player 1', game: game
-      expect(player3.errors.first).to eq [:name, "name already taken"]
+      expect(player3.errors.first).to eq [:name, 'name already taken']
     end
   end
 end

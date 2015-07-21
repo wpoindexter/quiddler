@@ -28,7 +28,7 @@ class WordsController < ApplicationController
   end
 
   def validate
-    render json: {valid: Word.new(text: params[:text]).valid_word?}
+    render json: { valid: Word.new(text: params[:text]).valid_word? }
   end
 
   def destroy
