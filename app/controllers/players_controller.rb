@@ -10,10 +10,10 @@ class PlayersController < ApplicationController
   end
 
   def create
-    player = Player.new player_params
-    player.game_id = params[:game_id]
-    if player.save
-      render json: player, status: :created
+    @player = Player.new player_params
+    @player.game_id = params[:game_id]
+    if @player.save
+      render json: @player, status: :created
     else
       render_error
     end

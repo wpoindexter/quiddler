@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :player do
-    name 'Player 1'
+    sequence :name do |n|
+      "Player #{n}"
+    end
     scorekeeper false
     game
   end

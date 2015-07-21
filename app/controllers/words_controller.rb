@@ -10,10 +10,10 @@ class WordsController < ApplicationController
   end
 
   def create
-    word = Word.new word_params
-    word.player_id = params[:player_id]
-    if word.save
-      render json: word, status: :created
+    @word = Word.new word_params
+    @word.player_id = params[:player_id]
+    if @word.save
+      render json: @word, status: :created
     else
       render_error
     end
