@@ -3,6 +3,8 @@ ruby '2.2.2'
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem 'bower-rails'
+gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'puma'
 gem 'rails', '4.2.3'
