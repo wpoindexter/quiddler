@@ -12,8 +12,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'wannabe_bool'
 
 group :development do
-  gem 'letter_opener'
-  gem 'pre-commit'
   gem 'rubocop'
 end
 
