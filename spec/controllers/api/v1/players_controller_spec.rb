@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PlayersController, type: :controller do
+RSpec.describe Api::V1::PlayersController, type: :controller do
   describe 'GET #index' do
     it 'should render all players for a game' do
       game = FactoryGirl.create :game

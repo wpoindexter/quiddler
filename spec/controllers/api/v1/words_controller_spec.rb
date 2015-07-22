@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'rake'
 
-RSpec.describe WordsController, type: :controller do
+RSpec.describe Api::V1::WordsController, type: :controller do
   before :all do
     load Rails.root + 'db/seeds.rb'
   end

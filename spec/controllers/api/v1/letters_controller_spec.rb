@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LettersController, type: :controller do
+RSpec.describe Api::V1::LettersController, type: :controller do
   describe 'GET #index' do
     it 'should render all letters' do
       ('a'..'z').each { |letter| Letter.create(text: letter, points: 1) }
