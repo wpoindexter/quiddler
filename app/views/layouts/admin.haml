@@ -1,0 +1,68 @@
+!!!
+%html
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{http: {equiv: 'X-UA-Compatible'}, content: 'IE=edge'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+    %title Quiddler Admin Dashboard
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  %body
+    #wrapper
+      %nav.navbar.navbar-default.navbar-static-top{role: 'navigation', style: 'margin-bottom: 0'}
+        .navbar-header
+          %button.navbar-toggle{data: {target: '.navbar-collapse', toggle: 'collapse'}, type: 'button'}
+            %span.sr-only Navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to 'Quiddler Dashboard', '/admin/dashboard', class: 'navbar-brand'
+        .navbar-default.sidebar{:role => "navigation"}
+          .sidebar-nav.navbar-collapse
+            %ul#side-menu.nav
+              %li
+                %a{:href => "index.html"}
+                  %i.fa.fa-dashboard.fa-fw
+                  Dashboard
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-bar-chart-o.fa-fw
+                  Games
+                  %span.fa.arrow
+                %ul.nav.nav-second-level
+                  %li
+                    %a{:href => "flot.html"} All Games
+                  %li
+                    %a{:href => "morris.html"} Active Games
+                  %li
+                    %a{:href => "morris.html"} Inactive Games
+              %li
+                %a{:href => "tables.html"}
+                  %i.fa.fa-table.fa-fw
+                  Players
+                  %span.fa.arrow
+                %ul.nav.nav-second-level
+                  %li
+                    %a{:href => "flot.html"} All Players
+                  %li
+                    %a{:href => "morris.html"} Active Players
+                  %li
+                    %a{:href => "morris.html"} Inactive Players
+              %li
+                %a{:href => "forms.html"}
+                  %i.fa.fa-edit.fa-fw
+                  Words
+              %li
+                %a{:href => "forms.html"}
+                  %i.fa.fa-edit.fa-fw
+                  Letters
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-wrench.fa-fw
+                  Word Verifications
+      #page-wrapper= yield

@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'active_model_serializers'
 gem 'bower-rails'
+gem 'chronic'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'puma'

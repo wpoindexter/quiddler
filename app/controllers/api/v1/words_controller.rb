@@ -1,6 +1,6 @@
 module Api
   module V1
-    class WordsController < ApplicationController
+    class WordsController < Api::BaseController
       before_action :set_word, only: [:show, :update, :destroy]
 
       def index

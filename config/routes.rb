@@ -12,4 +12,8 @@ Rails.application.routes.draw do
       post '/words/validate' => 'words#validate'
     end
   end
+
+  namespace :admin do
+    get '/dashboard' => 'admin#dashboard'
+  end
 end

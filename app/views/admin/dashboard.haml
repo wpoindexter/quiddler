@@ -1,0 +1,118 @@
+.row
+  .col-lg-12
+    %h1.page-header Quiddler Dashboard
+.row
+  .col-lg-3.col-md-6
+    .panel.panel-primary
+      .panel-heading
+        .row
+          .col-xs-3
+            %i.fa.fa-comments.fa-5x
+          .col-xs-9.text-right
+            .huge= @active_games_count
+            %div Active Games!
+      %a{:href => "#"}
+        .panel-footer
+          %span.pull-left View Active Games
+          %span.pull-right
+            %i.fa.fa-arrow-circle-right
+          .clearfix
+  .col-lg-3.col-md-6
+    .panel.panel-green
+      .panel-heading
+        .row
+          .col-xs-3
+            %i.fa.fa-tasks.fa-5x
+          .col-xs-9.text-right
+            .huge= @active_players_count
+            %div Active Players!
+      %a{:href => "#"}
+        .panel-footer
+          %span.pull-left View Players
+          %span.pull-right
+            %i.fa.fa-arrow-circle-right
+          .clearfix
+  .col-lg-3.col-md-6
+    .panel.panel-yellow
+      .panel-heading
+        .row
+          .col-xs-3
+            %i.fa.fa-shopping-cart.fa-5x
+          .col-xs-9.text-right
+            .huge= @active_words_count
+            %div Total Active Words!
+      %a{:href => "#"}
+        .panel-footer
+          %span.pull-left View Words
+          %span.pull-right
+            %i.fa.fa-arrow-circle-right
+          .clearfix
+  .col-lg-3.col-md-6
+    .panel.panel-red
+      .panel-heading
+        .row
+          .col-xs-3
+            %i.fa.fa-support.fa-5x
+          .col-xs-9.text-right
+            .huge 13
+            %div Word Verifications
+      %a{:href => "#"}
+        .panel-footer
+          %span.pull-left View Word Verifications
+          %span.pull-right
+            %i.fa.fa-arrow-circle-right
+          .clearfix
+.row
+  .col-lg-8
+    .panel.panel-default
+      .panel-heading
+        %i.fa.fa-bar-chart-o.fa-fw
+        Active Games By Day
+      .panel-body
+        #active-games-area-chart
+  .col-lg-4
+    .panel.panel-default
+      .panel-heading
+        %i.fa.fa-bell.fa-fw
+        Notifications Panel
+      .panel-body
+        .list-group
+          %a.list-group-item{:href => "#"}
+            %i.fa.fa-comment.fa-fw
+            Last Points Given
+            %span.pull-right.text-muted.small
+              %em 4 minutes ago
+          %a.list-group-item{:href => "#"}
+            %i.fa.fa-twitter.fa-fw
+            Last Game Activated
+            %span.pull-right.text-muted.small
+              %em 12 minutes ago
+          %a.list-group-item{:href => "#"}
+            %i.fa.fa-envelope.fa-fw
+            Last Game Deactivated
+            %span.pull-right.text-muted.small
+              %em 27 minutes ago
+          %a.list-group-item{:href => "#"}
+            %i.fa.fa-tasks.fa-fw
+            Last Word Verification
+            %span.pull-right.text-muted.small
+              %em 43 minutes ago
+          %a.list-group-item{:href => "#"}
+            %i.fa.fa-upload.fa-fw
+            Last Word Rejected
+            %span.pull-right.text-muted.small
+              %em 11:32 AM
+:javascript
+  var activeGamesChartData = $.parseJSON("j @active_games_chart_data");
+  $(function() {
+    Morris.Area({
+        element: 'active-games-area-chart',
+        data: activeGamesChartData,
+        xkey: 'period',
+        ykeys: ['active_games'],
+        labels: ['Active Games'],
+        pointSize: 2,
+        hideHover: 'auto',
+        resize: true
+      });
+  });
