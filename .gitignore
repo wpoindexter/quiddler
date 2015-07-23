@@ -1,8 +1,9 @@
-/.bundle
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/log/*
-!/log/.keep
-/tmp
-/spec/examples.txt
-/coverage
+.bundle
+db/*.sqlite3
+db/*.sqlite3-journal
+log/*
+tmp
+spec/examples.txt
+coverage
+.ruby-version
+.ruby-gemset
