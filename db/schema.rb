@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717164327) do
+ActiveRecord::Schema.define(version: 20150724200725) do
 
   create_table "games", force: :cascade do |t|
     t.string   "friendly_name"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20150717164327) do
   end
 
   add_index "players", ["game_id"], name: "index_players_on_game_id"
+
+  create_table "word_verifications", force: :cascade do |t|
+    t.string   "text"
+    t.boolean  "valid_word"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "words", force: :cascade do |t|
     t.string   "text"

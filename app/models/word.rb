@@ -10,8 +10,9 @@ class Word < ActiveRecord::Base
   end
 
   def valid_word?
-    # TODO: send dictionary API call
-    !text.eql? 'fail'
+    valid_word = DictionaryApi.word_exists? text
+    WordVerification.create text: text, valid_word: valid_word
+    valid_word
   end
 
   private

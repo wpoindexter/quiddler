@@ -30,7 +30,7 @@ module Api
       end
 
       def validate
-        render json: { valid: Word.new(text: params[:text]).valid_word? }
+        render json: { text: params[:text], valid: Word.new(text: params[:text]).valid_word? }
       end
 
       def destroy
