@@ -15,6 +15,12 @@ class Word < ActiveRecord::Base
     valid_word
   end
 
+  def letters
+    letters_array = []
+    text.split('').each { |l| letters_array << letter(l) }
+    letters_array
+  end
+
   private
 
   def letter(letter)

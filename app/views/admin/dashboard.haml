@@ -1,6 +1,4 @@
-.row
-  .col-lg-12
-    %h1.page-header Quiddler Dashboard
+%br
 .row
   .col-lg-3.col-md-6
     .panel.panel-primary
@@ -22,7 +20,7 @@
       .panel-heading
         .row
           .col-xs-3
-            %i.fa.fa-tasks.fa-5x
+            %i.fa.fa-users.fa-5x
           .col-xs-9.text-right
             .huge= @active_players_count
             %div Active Players!
@@ -37,7 +35,7 @@
       .panel-heading
         .row
           .col-xs-3
-            %i.fa.fa-shopping-cart.fa-5x
+            %i.fa.fa-file-text.fa-5x
           .col-xs-9.text-right
             .huge= @active_words_count
             %div Total Active Words!
@@ -52,7 +50,7 @@
       .panel-heading
         .row
           .col-xs-3
-            %i.fa.fa-support.fa-5x
+            %i.fa.fa-list.fa-5x
           .col-xs-9.text-right
             .huge= @word_verifications_count
             %div Word Verifications
@@ -89,30 +87,30 @@
       .panel-body
         .list-group
           %a.list-group-item{:href => "#"}
-            %i.fa.fa-comment.fa-fw
+            %i.fa.fa-check-circle.fa-fw.text-success
             Last Points Given
             %span.pull-right.text-muted.small
-              %em 4 minutes ago
+              %em= last_points_given
           %a.list-group-item{:href => "#"}
-            %i.fa.fa-twitter.fa-fw
+            %i.fa.fa-check-circle.fa-fw.text-success
             Last Game Activated
             %span.pull-right.text-muted.small
               %em= last_game_activated
           %a.list-group-item{:href => "#"}
-            %i.fa.fa-envelope.fa-fw
+            %i.fa.fa-times-circle.fa-fw.text-danger
             Last Game Deactivated
             %span.pull-right.text-muted.small
               %em= last_game_deactivated
           %a.list-group-item{:href => "#"}
-            %i.fa.fa-tasks.fa-fw
+            %i.fa.fa-check-circle.fa-fw.text-success
             Last Word Verification
             %span.pull-right.text-muted.small
-              %em= last_word_verification
+              %em= last_successful_word_verification
           %a.list-group-item{:href => "#"}
-            %i.fa.fa-upload.fa-fw
+            %i.fa.fa-times-circle.fa-fw.text-danger
             Last Word Rejected
             %span.pull-right.text-muted.small
-              %em Coming Soon
+              %em= last_unsuccessful_word_verification
 :javascript
   var activeGamesChartData = $.parseJSON("#{j @active_games_chart_data.to_json}");
   $(function() {
